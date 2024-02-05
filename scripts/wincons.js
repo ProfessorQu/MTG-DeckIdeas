@@ -12,6 +12,14 @@ function shuffle(array) {
   return array;
 }
 
+function getRandom(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
 function createList(array) {
     let list = document.getElementById("options");
 
@@ -19,26 +27,66 @@ function createList(array) {
         let listItem = document.createElement('li');
         listItem.classList.add("list-group-item");
         listItem.innerText = restriction;
+        listItem.style.top = "0px";
 
         list.appendChild(listItem);
     }
 }
 
-function chooseRandom() {
-    let list = document.getElementById("options");
-    let items = list.getElementsByClassName("list-group-item");
-
-    let randomElement = items[Math.floor(Math.random() * items.length)];
-
-    for (let item of items) {
-        item.classList.remove("active");
+async function chooseRandom() {
+    if (spinning) {
+        return
+    } else {
+        spinning = true;
     }
 
-    randomElement.classList.add("active");
-    list.insertBefore(randomElement, list.firstChild);
+    let list = document.getElementById("options");
+    list.innerHTML = "";
+
+    createList(wincons);
+
+    list.style.maxHeight = "5em";
+    let items = list.getElementsByClassName("list-group-item");
+
+    const listHeight = items[items.length - 1].offsetTop - items[0].offsetTop + items[items.length - 1].clientHeight;
+    const firstElementOffsetTop = items[0].offsetTop;
+    const range = getRandom(300, 500);
+
+    for (let i = 0; i < range; i++) {
+        for (let item of items) {
+            let top = item.style.top;
+            let topNumber = Number(top.substring(0, top.length - 2));
+            topNumber -= 5;
+
+            if (item.offsetTop < 5) {
+                topNumber += listHeight;
+            }
+
+            item.style.top = topNumber + "px";
+        }
+
+        await sleep(10)
+    }
+
+    let closestItem = null;
+    let closestDist = 10000000;
+
+    for (let item of items) {
+        let dist = Math.abs(item.offsetTop - firstElementOffsetTop);
+        if (dist < closestDist) {
+            closestItem = item;
+            closestDist = dist;
+        }
+    }
+
+    closestItem.classList.add("active");
+
+    spinning = false;
 }
 
-const WINCONS = [
+let spinning = false;
+
+const wincons = [
     "Evenveel kaarten in library als graveyard",
     "Alle tegenstanders hebben [X] levens (X=60, 80)",
     "[X] treasures op de battlefield hebben (X=20, 31)",
@@ -66,7 +114,7 @@ const WINCONS = [
     "Een kaart van elke universes beyond set op het battlefield hebben",
 ];
 
-createList(WINCONS);
+createList(wincons);
 
 let selectRandomButton = document.getElementById("selectRandom");
 selectRandomButton.addEventListener('click', chooseRandom);
