@@ -13,8 +13,8 @@ function shuffle(array) {
 }
 
 function getRandom(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
+    let min = Math.ceil(min);
+    let max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -57,7 +57,7 @@ async function chooseRandom() {
 
     for (let i = 0; i < range; i++) {
         for (let item of items) {
-            let top = item.style.top;
+            let {top} = item.style;
             let topNumber = Number(top.substring(0, top.length - 2));
             topNumber -= 10;
 
@@ -84,7 +84,7 @@ async function chooseRandom() {
 
     let difference = closestItem.offsetTop - firstElementOffsetTop;
     for (let item of items) {
-        let top = item.style.top;
+        let {top} = item.style;
         let topNumber = Number(top.substring(0, top.length - 2));
 
         item.style.top = topNumber - difference + "px";
