@@ -78,6 +78,10 @@ const RESTRICTIONS = [
     "Have no basic lands in your deck",
     "Build your deck centered around some character",
     "All cards must be snow cards",
+    "All card art must be from a specific illustrator",
+    "No cards with mana value lower than your commanders manavalue",
+    "No cards with mana value greater than your commanders mana value",
+    "All cards must be able to create a specific type of token",
 ];
 
 createList("options", RESTRICTIONS);
