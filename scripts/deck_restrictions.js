@@ -104,19 +104,23 @@ function revealList() {
 let spinning = false;
 
 const restrictions = [
-    "Alleen Colorless kaarten",
-    "Geen creatures",
-    "Alleen permanents",
-    "Pauper, dus alleen maar commons, of allesbehalve je commander common",
-    "Alle kaarten mana value < [X] (X=3, 5)",
-    "Alle kaarten mana value > [X] (X=2, 3)",
-    "Alleen specifieke mana values [X] toegestaan ([X]=2 | 2 en 5 en 11 | 1 en 3 en 6)",
-    "Alle kaarten moeten oneven mana value zijn",
-    "Alle kaarten moeten even mana value zijn",
-    "Alleen historic kaarten in het deck",
-    "Alleen kaarten voor jaar [X] (X=2004, 2009)",
-    "Alleen kaarten gebruiken die legaal zijn in standerd",
-    "Decks met commanders met <[X] decks op edhrec (X=100, 10)",
+    "Only use Colorless cards",
+    "Have no creatures",
+    "Only have permanents",
+    "Pauper a.k.a. everything is common, except your commander",
+    "All cards have mana value < [X] (X=3, 5)",
+    "All cards have mana value > [X] (X=2, 3)",
+    "Only specific mana values [X] are allowed ([X]=2 | 2 en 5 en 11 | 1 en 3 en 6)",
+    "All cards must be uneven mana value",
+    "All cards must be even mana value",
+    "Only have historic cards (Artifacts, Legendaries and/or Sagas)",
+    "Only have cards printed before [X] (X=2004, 2009)",
+    "Only have cards that are standard legal",
+    "Create a deck with a commander with < [X] decks on edhrec (X=100, 10)",
+    "Your deck can cost no more than 100 euros",
+    "Have no basic lands in your deck",
+    "Build your deck centered around some character",
+    "All cards must be snow cards",
 ];
 
 createList(restrictions);
