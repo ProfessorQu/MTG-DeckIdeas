@@ -126,7 +126,7 @@ let spinning = false;
 
 const wincons = [
     "Same number of cards in graveyard as in library",
-    "All oppontents have [X] life (X=60, 80)",
+    "All opponents have [X] life (X=60, 80)",
     "Have [X] treasures on the battlefield (X=20, 31)",
     "Have [X] copies of the same creature on the battlefield (X=4)",
     "Have [X] characters of group [Y] (X=4, 5, 6) (Y=Doctor Who's, Gatewatch, LOTR, etc)",
@@ -134,7 +134,7 @@ const wincons = [
     "Have [X] transformed permanents on the battlefield (X=5, 6)",
     "Have [X] different type creature tokens on the battlefield (X=4, 5)",
     "Hit everyone with a bad creature type [Y] (Y=Goat, Egg, Lammasu, Coward, Beeble, Sand, Wombat, Zubera, Crab, etc)",
-    "Destroy [X] of your own craetures with targeted removal (X=4, 5)",
+    "Destroy [X] of your own creatures with targeted removal (X=4, 5)",
     "Have/have gotten all lands from your deck on the battlefield, minimum of [X] landen in your deck (X=20, 25, 30)",
     "Have as much life as there are lands on the battlefield",
     "Equip a creature with [X] swords and hit someone (X=6, allemaal)",
