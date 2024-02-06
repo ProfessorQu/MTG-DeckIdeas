@@ -8,61 +8,11 @@ async function chooseRandom() {
     let badCreatures = document.getElementById("bad-creatures");
     badCreatures.style.display = "none";
 
-    let list = document.getElementById("options");
-    list.style.maxHeight = "5em";
-    list.innerHTML = "";
-
-    createList("options", wincons);
-
-    let items = list.getElementsByClassName("list-group-item");
-
-    const listHeight = items[items.length - 1].offsetTop - items[0].offsetTop + items[items.length - 1].clientHeight;
-    const firstElementOffsetTop = items[0].offsetTop;
-    const range = getRandom(200, 400);
-
-    for (let i = 0; i < range; i++) {
-        for (let item of items) {
-            let {top} = item.style;
-            let topNumber = Number(top.substring(0, top.length - 2));
-            topNumber -= 10;
-
-            if (item.offsetTop < 5) {
-                topNumber += listHeight;
-            }
-
-            item.style.top = topNumber + "px";
-        }
-
-        await sleep(10)
-    }
-
-    let closestItem = null;
-    let closestDist = 10000000;
-
-    for (let item of items) {
-        let dist = Math.abs(item.offsetTop - firstElementOffsetTop);
-        if (dist < closestDist) {
-            closestItem = item;
-            closestDist = dist;
-        }
-    }
-
-    let difference = closestItem.offsetTop - firstElementOffsetTop;
-    for (let item of items) {
-        let {top} = item.style;
-        let topNumber = Number(top.substring(0, top.length - 2));
-
-        item.style.top = topNumber - difference + "px";
-    }
-
-    closestItem.classList.add("active");
+    let closestItem = await chooseRandomFromList(WINCONS);
 
     if (closestItem.innerHTML.startsWith("Hit everyone")) {
         document.getElementById("bad-creatures").style.display = "inline";
     }
-
-    let revealListButton = document.getElementById("revealList");
-    revealListButton.style.display = "inline";
 
     spinning = false;
 }
@@ -82,7 +32,7 @@ function chooseRandomCreature() {
 
 let spinning = false;
 
-const wincons = [
+const WINCONS = [
     "Same number of cards in graveyard as in library",
     "All opponents have [X] life (X=60, 80)",
     "Have [X] treasures on the battlefield (X=20, 31)",
@@ -110,7 +60,7 @@ const wincons = [
     "Have a card from each Universes Beyond on the battlefield",
 ];
 
-const badCreatures = [
+const BAD_CREATURES = [
     "Goat",
     "Egg",
     "Lammasu",
@@ -122,8 +72,8 @@ const badCreatures = [
     "Cra",
 ];
 
-createList("options", wincons);
-createList("creatureOptions", badCreatures);
+createList("options", WINCONS);
+createList("creatureOptions", BAD_CREATURES);
 
 let selectRandomButton = document.getElementById("selectRandom");
 selectRandomButton.addEventListener('click', chooseRandom);
