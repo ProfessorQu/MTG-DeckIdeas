@@ -41,22 +41,22 @@ async function chooseRandom() {
     }
 
     let list = document.getElementById("options");
+    list.style.maxHeight = "5em";
     list.innerHTML = "";
 
     createList(wincons);
 
-    list.style.maxHeight = "5em";
     let items = list.getElementsByClassName("list-group-item");
 
     const listHeight = items[items.length - 1].offsetTop - items[0].offsetTop + items[items.length - 1].clientHeight;
     const firstElementOffsetTop = items[0].offsetTop;
-    const range = getRandom(300, 500);
+    const range = getRandom(200, 400);
 
     for (let i = 0; i < range; i++) {
         for (let item of items) {
             let top = item.style.top;
             let topNumber = Number(top.substring(0, top.length - 2));
-            topNumber -= 5;
+            topNumber -= 10;
 
             if (item.offsetTop < 5) {
                 topNumber += listHeight;
@@ -79,9 +79,26 @@ async function chooseRandom() {
         }
     }
 
-    closestItem.classList.add("active");
+    let difference = closestItem.offsetTop - firstElementOffsetTop;
+    for (let item of items) {
+        let top = item.style.top;
+        let topNumber = Number(top.substring(0, top.length - 2));
 
+        item.style.top = topNumber - difference + "px";
+    }
+
+    closestItem.classList.add("active");
+    let revealListButton = document.getElementById("revealList");
+    revealListButton.style.display = "inline";
     spinning = false;
+}
+
+function revealList() {
+    let list = document.getElementById("options");
+    list.style.maxHeight = "";
+
+    let revealListButton = document.getElementById("revealList");
+    revealListButton.style.display = "none";
 }
 
 let spinning = false;
@@ -118,3 +135,6 @@ createList(wincons);
 
 let selectRandomButton = document.getElementById("selectRandom");
 selectRandomButton.addEventListener('click', chooseRandom);
+
+let revealListButton = document.getElementById("revealList");
+revealListButton.addEventListener('click', revealList);
