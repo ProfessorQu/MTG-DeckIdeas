@@ -43,7 +43,7 @@ async function chooseRandom() {
     let list = document.getElementById("options");
     list.innerHTML = "";
 
-    createList(restrictions);
+    createList(RESTRICTIONS);
 
     list.style.maxHeight = "5em";
     let items = list.getElementsByClassName("list-group-item");
@@ -103,7 +103,7 @@ function revealList() {
 
 let spinning = false;
 
-const restrictions = [
+const RESTRICTIONS = [
     "Only use Colorless cards",
     "Have no creatures",
     "Only have permanents",
@@ -123,7 +123,7 @@ const restrictions = [
     "All cards must be snow cards",
 ];
 
-createList(restrictions);
+createList(RESTRICTIONS);
 
 let selectRandomButton = document.getElementById("selectRandom");
 selectRandomButton.addEventListener('click', chooseRandom);
