@@ -79,13 +79,6 @@ function chooseRandomCreature() {
     randomItem.classList.add("active");
 }
 
-function revealList() {
-    let list = document.getElementById("options");
-    list.style.maxHeight = "";
-
-    let revealListButton = document.getElementById("revealList");
-    revealListButton.style.display = "none";
-}
 
 let spinning = false;
 

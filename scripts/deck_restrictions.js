@@ -58,14 +58,6 @@ async function chooseRandom() {
     spinning = false;
 }
 
-function revealList() {
-    let list = document.getElementById("options");
-    list.style.maxHeight = "";
-
-    let revealListButton = document.getElementById("revealList");
-    revealListButton.style.display = "none";
-}
-
 let spinning = false;
 
 const RESTRICTIONS = [
