@@ -29,7 +29,7 @@ async function chooseRandomFromList(array) {
         for (let item of items) {
             let {top} = item.style;
             let topNumber = Number(top.substring(0, top.length - 2));
-            topNumber -= 10;
+            topNumber -= range - i;
 
             if (item.offsetTop < 5) {
                 topNumber += listHeight;
